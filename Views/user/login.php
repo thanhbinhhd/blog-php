@@ -23,8 +23,11 @@
                     <div id="wrapper">
                         <div id="login" class="animate form">
                             <form  action="mysuperscript.php" autocomplete="on"> 
+                                <p class="login button" style="float: right;"> 
+                                    <a href="?"><input style="width: 50px" type="button" value="Back" /></a>
+                                </p>
                                 <h1>Log in </h1> 
-                                <p> 
+                                <p>
                                     <label for="email" class="uname" data-icon="u" > Your email or username </label>
                                     <input id="email" name="email" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
                                 </p>
@@ -48,6 +51,9 @@
 
                         <div id="register" class="animate form">
                             <form  action="mysuperscript.php" autocomplete="on"> 
+                                <p class="login button" style="float: right;"> 
+                                    <a href="?"><input style="width: 50px" type="button" value="Back" /></a>
+                                </p>
                                 <h1> Sign up </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
@@ -76,6 +82,7 @@
                         </div>
 						
                     </div>
+
                 </div>  
             </section>
         </div>

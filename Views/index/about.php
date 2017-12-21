@@ -22,26 +22,13 @@
 			<h3>OUR TEAM</h3>
 		</div>
 			<div class="team-bottom">
+				<?php foreach ($admin as $row): ?>
 				<div class="col-md-3 team-left">
-					<img src="Public/images/t-1.jpg" alt="" />
-					<h4>Rita Nelson</h4>
+					<img src="<?php echo $row['avatar'] ?>" style="border-radius: 50% !important;height: 200px;width: 200px" class="img-rounded"/>
+					<h4><?php echo $row['name'] ?></h4>
 					<p>Fusce at elementum diam. Integer pellentesque ultricies pharetra.</p>
 				</div>
-				<div class="col-md-3 team-left">
-					<img src="Public/images/t-2.jpg" alt="" />
-					<h4>Marta Healy</h4>
-					<p>Fusce at elementum diam. Integer pellentesque ultricies pharetra.</p>
-				</div>
-				<div class="col-md-3 team-left">
-					<img src="Public/images/t-3.jpg" alt="" />
-					<h4>John Black</h4>
-					<p>Fusce at elementum diam. Integer pellentesque ultricies pharetra.</p>
-				</div>
-				<div class="col-md-3 team-left">
-					<img src="Public/images/t-4.jpg" alt="" />
-					<h4>Kate Tompson</h4>
-					<p>Fusce at elementum diam. Integer pellentesque ultricies pharetra.</p>
-				</div>
+				<?php endforeach ?>
 				<div class="clearfix"></div>
 			</div>
 		</div>

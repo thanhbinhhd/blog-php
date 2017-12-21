@@ -13,15 +13,20 @@
 			if(isset($_GET['page']))
 				$page=$_GET['page'];
 			else $page=1;
-			$count = count($this->model->All());
+			$count = $this->model->count();
 			$num_page=ceil($count/$num);
 			$start = $num*($page-1);
 			$data = $this->model->index($start,$num);
+			$new_post = $this->model->new_posts();
 			$num_element = count($data);
-			// echo "<pre>";
-			// 	print_r($data);
-			// echo "</pre>";
+			$all=$this->model->All();
 			require_once 'Views/index/index.php';
+		}
+
+		public function about()
+		{
+			$admin=$this->model->admin();
+			require_once 'Views/index/about.php';
 		}
 	}
  ?>

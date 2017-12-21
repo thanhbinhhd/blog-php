@@ -21,7 +21,7 @@
 					$controller->index();
 					break;
 				case 'about':
-					include_once 'Views/index/about.php';
+					$controller->about();
 					break;
 				case 'contact':
 					include_once 'Views/index/contact.php';

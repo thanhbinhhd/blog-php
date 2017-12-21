@@ -11,12 +11,12 @@
 						<h3><?php echo $data[0]['title'] ?></h3>
 					</div>
 					<div class="about-two">
-						<a href="single.html"><img src="<?php echo $data[0]['image'] ?>"  /></a>
+						<a href="?mod=index&act=read&slug=<?php echo $data[0]['slug'] ?>"><img src="<?php echo $data[0]['image'] ?>"  /></a>
 						<p>Posted by <a href="#"><?php echo $data[0]['name'] ?></a> <?php echo $data[0]['created_at'] ?><a href="#">comments(2)</a></p>
 						<p><?php echo $data[0]['description'] ?></p>
 						<p><?php echo $data[0]['description'] ?></p>
 						<div class="about-btn">
-							<a href="?mod=index&act=read&id=<?php echo $data[0]['id'] ?>">Read More</a>
+							<a href="?mod=index&act=read&slug=<?php echo $data[0]['slug'] ?>">Read More</a>
 						</div>
 						<ul>
 							<li><p>Share : </p></li>
@@ -27,17 +27,40 @@
 							<li><a href="#"><span class="drbl"> </span></a></li>
 						</ul>
 					</div>	
-					<div class="about-tre">
+					<div class="about-tre" style="overflow: hidden;">
 						<?php foreach ($data as $row): ?>
 							<div class="col-md-6 abt-left">
-								<a href="?mod=index&act=read&id=<?php echo $row['id'] ?>"><img style="height: 235px;" class="img-responsive" src="<?php echo $row['image'] ?>" /></a>
+								<a href="?mod=index&act=read&slug=<?php echo $row['slug'] ?>"><img style="height: 235px;" class="img-responsive" src="<?php echo $row['image'] ?>" /></a>
 								<h6>Find The Most</h6>
-								<h3><a href="<?php echo $row['id'] ?>"><?php echo substr($row['title'],0,20)."..." ?></a></h3>
-								<p><?php echo $row['description'] ?></p>
+								<h3><a href="?mod=index&act=read&slug=<?php echo $row['slug'] ?>"><?php echo substr($row['title'],0,20)."..." ?></a></h3>
+								<p><?php echo substr($row['description'], 0,70) ?></p>
 								<label><?php echo $row['created_at'] ?></label>
 							</div>
 						<?php endforeach ?>
-					</div>	
+					</div>
+					<center style="clear: both;margin-top: 30px;">
+						<div class="btn-group">
+							<a href="?page=1"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-triangle-left"></span></button></a>
+						  	<a href="?page=<?php echo ($page==1)?'1':$page-1; ?>"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></button></a>
+
+						 	 <?php if($page-3>=1) {?>
+						  		<a href="?page=<?php echo ($page==1)?'1':$page-1; ?>"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-option-horizontal"></span></button></a>
+						  	<?php } ?>
+
+					  		<?php for($i=-2;$i<3;$i++) {
+							  	$temp_num=$page+$i;
+							  	if($temp_num<=$num_page&&$temp_num>0){
+							  ?>
+							  	<a href="?page=<?php echo $temp_num; ?>"><button type="button" class="btn btn-primary"><?php echo $temp_num; ?></button></a>
+							<?php ;}} ?>
+							<?php if($page+3<=$num_page) {?>
+							  	<a href="?page=<?php echo ($page==$num_page)?'$num_page':$page+1; ?>"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-option-horizontal"></span></button></a>
+							<?php } ?>
+
+							<a href="?page=<?php echo ($page==$num_page)?'$num_page':$page+1; ?>"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span></button></a>
+							<a href="?page=<?php echo $num_page;?>"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-triangle-right"></span></button></a>
+						</div>
+					</center>
 				</div>
 				<div class="col-md-4 about-right heading">
 					<div class="abt-1">
@@ -51,37 +74,19 @@
 						</div>
 					</div>
 					<div class="abt-2">
-						<h3>YOU MIGHT ALSO LIKE</h3>
-							<div class="might-grid">
-								<div class="grid-might">
-									<a href="single.html"><img src="Public/images/c-12.jpg" class="img-responsive" alt=""> </a>
+						<h3>NEW POST</h3>
+							<?php foreach ($new_post as $row2): ?>
+								<div class="might-grid">
+									<div class="grid-might">
+										<a href="?mod=index&act=read&slug=<?php echo $row2['slug']?>"><img src="<?php echo $row2['image']; ?>" class="img-responsive"> </a>
+									</div>
+									<div class="might-top">
+										<h4><a href="?mod=index&act=read&slug=<?php echo $row2['slug'] ?>"><?php echo $row['title']; ?></a></h4>
+										<p><?php echo substr($row2['description'], 0,50); ?></p> 
+									</div>
+									<div class="clearfix"></div>
 								</div>
-								<div class="might-top">
-									<h4><a href="single.html">Duis consectetur gravida</a></h4>
-									<p>Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p> 
-								</div>
-								<div class="clearfix"></div>
-							</div>	
-							<div class="might-grid">
-								<div class="grid-might">
-									<a href="single.html"><img src="Public/images/c-10.jpg" class="img-responsive" alt=""> </a>
-								</div>
-								<div class="might-top">
-									<h4><a href="single.html">Duis consectetur gravida</a></h4>
-									<p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p> 
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="might-grid">
-								<div class="grid-might">
-									<a href="single.html"><img src="Public/images/c-11.jpg" class="img-responsive" alt=""> </a>
-								</div>
-								<div class="might-top">
-									<h4><a href="single.html">Duis consectetur gravida</a></h4>
-									<p> Nullam non magna lobortis, faucibus erat eu, consequat justo. Suspendisse commodo nibh odio.</p> 
-								</div>
-								<div class="clearfix"></div>
-							</div>							
+							<?php endforeach ?>					
 					</div>
 					<div class="abt-2">
 						<h3>ARCHIVES</h3>
