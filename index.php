@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	if(isset($_GET['mod']))
 	{
 		$mod=$_GET['mod'];
@@ -35,11 +36,18 @@
 				}
 			break;
 		case 'users':
+			require_once 'Controllers/UserController.php';
+			$controller = new UserController();
 			switch ($act) {
 				case 'login':
-					require_once 'Views/user/login.php';
+					$controller->login();
 					break;
-				
+				case 'access':
+					$controller->access();
+					break;
+				case 'logout':
+					$controller->logout();
+					break;
 				default:
 					# code...
 					break;

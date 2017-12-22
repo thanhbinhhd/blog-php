@@ -8,6 +8,7 @@
         <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
         <meta name="author" content="Codrops" />
+        
         <!-- <link rel="shortcut icon" href="../favicon.ico">  -->
         <link rel="stylesheet" type="text/css" href="Public/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="Public/css/log_style.css" />
@@ -22,7 +23,7 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="mysuperscript.php" autocomplete="on"> 
+                            <form  action="?mod=users&act=access" method="post" autocomplete="on"> 
                                 <p class="login button" style="float: right;"> 
                                     <a href="?"><input style="width: 50px" type="button" value="Back" /></a>
                                 </p>
