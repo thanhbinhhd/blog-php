@@ -15,5 +15,11 @@
 			$query = "SELECT * FROM users WHERE email='$email'";
 			return $this->dbconn->query($query)->fetch_assoc();
 		}
+
+		public function register($name,$email,$password)
+		{
+			$query = "INSERT INTO users (name,email,password) VALUES ('$name','$email','$password')";
+			return $this->dbconn->query($query);
+		}
 	}
  ?>

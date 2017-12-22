@@ -10,9 +10,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="Public/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="Public/css/style.css" rel='stylesheet' type='text/css' />
 <script src="Public/js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!---- start-smoth-scrolling---->
-<script type="text/javascript" src="Public/js//move-top.js"></script>
-<script type="text/javascript" src="Public/js//easing.js"></script>
+<script type="text/javascript" src="Public/js/move-top.js"></script>
+<script type="text/javascript" src="Public/js/easing.js"></script>
 <script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		

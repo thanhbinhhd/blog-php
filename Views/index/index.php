@@ -2,6 +2,14 @@
 	include_once 'Views/index/header.php';
  ?>
 	<!--about-starts-->
+
+<?php if(isset($_COOKIE['successfully'])) {?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        toastr.success('<?php echo $_COOKIE['successfully']; ?>', 'successfully!',{timeout:5000});
+    });
+</script>
+<?php } ?>
 	<div class="about">
 		<div class="container">
 			<div class="about-main">
