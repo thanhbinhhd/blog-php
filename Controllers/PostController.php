@@ -28,5 +28,19 @@
 			$admin=$this->model->admin();
 			require_once 'Views/index/about.php';
 		}
+
+		public function read()
+		{
+			$slug=$_GET['slug'];
+			$post=$this->model->find($slug);
+			$author = $this->model->get_author($post['user_id']);
+			$tags = $this->model->get_tags($post['id']);
+			require_once 'Views/index/single.php';
+		}
+
+		public function list_of_author()
+		{
+			
+		}
 	}
  ?>

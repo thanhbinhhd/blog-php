@@ -28,7 +28,10 @@
 					include_once 'Views/index/contact.php';
 					break;
 				case 'read':
-					include_once 'Views/index/single.php';
+					$controller->read();
+					break;
+				case 'list_of_author':
+					$controller->list_of_author();
 					break;
 				default:
 					# code...

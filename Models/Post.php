@@ -4,7 +4,7 @@
 	{
 		public $connPost;
 		public $table="posts";
-		public $primaryKey="id";
+		public $primaryKey="slug";
 		public function __construct()
 		{
 			parent::__construct();
@@ -46,6 +46,23 @@
 				$data[]=$row;
 			}
 			return $data;
+		}
+
+		public function get_author($user_id)
+		{
+			$query = "SELECT * FROM users WHERE id='$user_id'";
+			return $this->dbconn->query($query)->fetch_assoc();
+		}
+
+		public function get_tags($post_id)
+		{
+			$tags=array();
+			$query="SELECT * FROM tags WHERE post_id='$post_id'";
+			$result = $this->dbconn->query($query);
+			while ($row = $result->fetch_assoc()) {
+				$tags[]=$row;
+			}
+			return $tags;
 		}
 	}
  ?>

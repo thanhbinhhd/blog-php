@@ -159,6 +159,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <a href="#" id="register-form-link">Register</a>
+                                <a href="?" style="float: right;"><button type="button" class="btn btn-primary">Back</button></a>
                             </div>
                         </div>
                         <hr>
