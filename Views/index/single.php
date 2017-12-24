@@ -1,6 +1,16 @@
 <?php 
 	include_once 'Views/index/header.php';
  ?>
+ <?php if(isset($_SESSION['login'])&&($_SESSION['login']['id']==$author['id'])){ ?>
+ 	<div style="margin: 20px;float: right;">
+ 	<select name="Option" id="">
+ 		<option value="">--option--</option>
+ 		<option value=""><a href="javascript:;" type="button" onclick="alertEdit('<?php echo $row['id']; ?>')" class="btn btn-success">Update</a></option>
+ 		<option value=""><a href="javascript:;" type="button" onclick="delEdit('<?php echo $row['id']; ?>')" class="btn btn-success">Delete</a>
+ 	</select>
+ 	<a href="?mod=posts"><button type="button" class="btn btn-primary">Back</button></a>
+ 	</div>
+ <?php } ?>
 	<!--start-single-->
 	<div class="single">
 		<div class="container">

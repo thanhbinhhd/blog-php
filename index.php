@@ -33,6 +33,9 @@
 				case 'list_of_author':
 					$controller->list_of_author();
 					break;
+				case 'list_of_tag':
+					$controller->list_of_tag();
+					break;
 				default:
 					# code...
 					break;
@@ -53,6 +56,45 @@
 					break;
 				case 'register':
 					$controller->register();
+					break;
+				case 'detail':
+					$controller->detail();
+					break;
+				case 'edit':
+					$controller->edit();
+					break;
+				case 'update':
+					$controller->update();
+					break;
+				case 'store':
+					$controller->store();
+					break;
+				case 'delete':
+					$controller->delete();
+					break;
+				default:
+					# code...
+					break;
+			}
+			break;
+		case 'posts':
+			require_once 'Controllers/PostController.php';
+			$controller=new PostController();
+			switch ($act) {
+				case 'index':
+					$controller->list();
+					break;
+				case 'edit':
+					$controller->edit();
+					break;
+				case 'store':
+					$controller->store();
+					break;
+				case 'delete':
+					$controller->delete();
+					break;
+				case 'update':
+					$controller->update();
 					break;
 				default:
 					# code...

@@ -10,10 +10,10 @@
 			$this->dbconn = $connection->conn;
 		}
 
-		public function All()
+		public function All($condition)
 		{
 			$data = array();
-			$query = "SELECT * FROM ".$this->table;
+			$query = "SELECT * FROM ".$this->table.$condition;
 			$result = $this->dbconn->query($query);
 			while ($row = $result->fetch_assoc()) {
 				$data[]=$row;
@@ -43,7 +43,6 @@
 			$sql = "INSERT INTO ".$this->table."(".$fields.") VALUES (".$values.")";
 			$status = $this->dbconn->query($sql);
 			$last_id = $this->dbconn->insert_id;
-
 			$data = $this->find($last_id);
 			return $data;
 		}

@@ -340,6 +340,7 @@ class PHPMailer
      * @see SMTP::$Debugoutput
      */
     public $Debugoutput = 'echo';
+
     /**
      * Whether to keep SMTP connection open after each message.
      * If this is set to true then to close the connection

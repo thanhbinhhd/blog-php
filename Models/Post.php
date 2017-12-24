@@ -4,10 +4,16 @@
 	{
 		public $connPost;
 		public $table="posts";
-		public $primaryKey="slug";
+		public $primaryKey="id";
 		public function __construct()
 		{
 			parent::__construct();
+		}
+
+		public function find_slug($slug)
+		{
+			$query = "SELECT * FROM ".$this->table." WHERE slug ='$slug'";
+			return $this->dbconn->query($query)->fetch_assoc();
 		}
 
 		public function count()
@@ -63,6 +69,18 @@
 				$tags[]=$row;
 			}
 			return $tags;
+		}
+
+		public function list_of($table,$condition)
+		{
+			$data=array();
+			$query ="SELECT posts.*,".$table.".* FROM posts,".$table.$condition;
+			die($query);
+			$result = $this->dbconn->query($query);
+			while ($row = $result->fetch_assoc()) {
+				$data[]=$row;
+			}
+			return $data;
 		}
 	}
  ?>

@@ -125,8 +125,7 @@
 			            ."<br>password: ".$password
 			            ."<br>Please click this link to accept: http://facebook.com";
 			        $subject="Eva Blog member";
-			        $s=$this->send_email($email,$name,$msg,$subject);
-			        die($s);
+			        $this->send_email($email,$name,$msg,$subject);
 					setcookie('successfully','Please check your email to accept!',time()+10);
 					header('Location: ?');
 				}
@@ -145,7 +144,7 @@
 		}
 		public function index()
 		{
-			$data=$this->model->All();
+			$data=$this->model->All("");
 			require_once 'Views/user/index.php';
 		}
 		public function store(){
@@ -178,7 +177,6 @@
 		 {
 		 	$id = $_GET['id'];
 		    $data = $this->model->find($id);
-
 		    if($data != null){
 		        echo json_encode([
 		          'data' => $data,
@@ -195,18 +193,9 @@
 		public function detail()
 		{
 			$id=$_GET['id'];
-			$data=$this->model->find($id);
-		    if($data != null){
-		        echo json_encode([
-		          'data' => $data,
-		          'status' => true,
-		        ]);
-		    }else{
-		   	    echo json_encode([
-		          'data' => null,
-		          'status' => false,
-		        ]);
-		    }
+			$user=$this->model->find($id);
+			$user['rank'] = ($user['privilege']==1)?"System admin":"Member";
+			require_once 'Views/user/detail.php';
 		}
 
 		public function update()
