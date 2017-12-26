@@ -74,7 +74,7 @@
 					<div class="abt-1">
 						<h3>ABOUT US</h3>
 						<div class="abt-one">
-							<img src="Public/images/c-2.jpg" alt="" />
+							<img src="Public/images/slide1.jpg" width="100%" />
 							<p>Quisque non tellus vitae mauris luctus aliquam sit amet id velit. Mauris ut dapibus nulla, a dictum neque.</p>
 							<div class="a-btn">
 								<a href="single.html">Read More</a>

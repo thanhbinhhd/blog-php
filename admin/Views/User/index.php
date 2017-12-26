@@ -13,6 +13,7 @@
 					<th>Name</th>
 					<th>Email</th>
 					<th>Mobile</th>
+					<th>Rank</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -23,6 +24,7 @@
 						<td><?php echo $row['name'] ?></td>
 						<td><?php echo $row['email'] ?></td>
 						<td><?php echo $row['mobile'] ?></td>
+						<td><?php echo ($row['privilege']==1)?"System admin":"Member" ?></td>
 						<td>
 							<a href="javascript:;" type="button" onclick="alertView('<?php echo $row['id']; ?>')" class="btn btn-info">View</a>
 							<a href="javascript:;" type="button" onclick="alertEdit('<?php echo $row['id']; ?>')" class="btn btn-success">update</a>
@@ -58,6 +60,13 @@
 	                  <label for="">Password</label>
 	                  <input type="password" class="form-control" id="password" placeholder="Nhập vào password" name="password">
 	              </div>
+	              <div class="form-group">
+	                  <label for="">Rank</label>
+	                  <select name="" id="privilege">
+	                  	<option value="1">System Admin</option>
+	                  	<option value="0">Member</option>
+	                  </select>
+	              </div>
 	               <div class="form-group">
 	                  <label for="">Địa chỉ</label>
 	                  <input type="text" class="form-control" id="address" placeholder="Nhập vào địa chỉ" name="address">
@@ -91,6 +100,13 @@
 	              <div class="form-group">
 	                  <label for="">Email</label>
 	                  <input type="text" class="form-control" id="eemail" name="email">
+	              </div>
+	              <div class="form-group">
+	                  <label for="">Rank</label>
+	                  <select name="" id="eprivilege">
+	                  	<option value="1">System Admin</option>
+	                  	<option value="0">Member</option>
+	                  </select>
 	              </div>
 	               <div class="form-group">
 	                  <label for="">Địa chỉ</label>
@@ -138,6 +154,10 @@
 	          				<td id="vavatar"></td>
 	          			</tr>
 	          			<tr>
+	          				<td>Rank</td>
+	          				<td id="vprivilege"></td>
+	          			</tr>
+	          			<tr>
 	          				<td>Gender</td>
 	          				<td id="vgender"></td>
 	          			</tr>
@@ -170,6 +190,7 @@
 		        var email = $('#email').val();
 		        var password = $('#password').val();
 		        var address = $('#address').val();
+		        var privilege=$('#privilege').val();
 		        $.ajax({
 		          type: "post",
 		          url: '?mod=users&act=store',
@@ -178,6 +199,7 @@
 		            mobile : mobile,
 		            email : email,
 		            password : password,
+		            privilege:privilege,
 		            address : address,
 		          },
 		          success: function(res)
@@ -191,11 +213,13 @@
 		                var data = result.data;
 		                $('#addUser').modal('hide');
 		                var flag = $('.flag');
+		                var privilege=(data.privilege==1)?"System admin":"Member";
 		                var html ='<tr id="user_'+data.id+'">'+
 		                    '<td>'+data.id+'</td>'+
 		                    '<td>'+data.name+'</td>'+
 		                    '<td>'+data.email+'</td>'+
 		                    '<td>'+data.mobile+'</td>'+
+		                    '<td>'+privilege+'</td>'+
 		                    '<td>'+
 		                    '<a href="javascript:;" type="button" onclick="alertView('+data.id+')" class="btn btn-info">'+
 		                      'View'+
@@ -279,6 +303,7 @@
 						$("#emobile").val(data.mobile);
 						$("#eaddress").val(data.address);
 						$("#euser_id").val(id);
+						$("#eprivilege").val(data.privilege);
 					}
 				},
 				error: function (xhr, ajaxOptions, thrownError) {
@@ -294,6 +319,7 @@
 				var email=$("#eemail").val();
 				var mobile=$("#emobile").val();
 				var address=$("#eaddress").val();
+				var privilege=$("#eprivilege").val();
 				var id=$("#euser_id").val();
 				$.ajax({
 					url: '?mod=users&act=update',
@@ -303,6 +329,7 @@
 						name:name,
 						mobile:mobile,
 						address:address,
+						privilege:privilege,
 						id:id,
 					},
 					success:function (res) {
@@ -314,12 +341,14 @@
 							if(status)
 							{
 								var data=result.data;
+								var privilege=(data.privilege==1)?"System admin":"Member";
 								$("#editUser").modal("hide");
 								var html =
 			                    '<td>'+data.id+'</td>'+
 			                    '<td>'+data.name+'</td>'+
 			                    '<td>'+data.email+'</td>'+
 			                    '<td>'+data.mobile+'</td>'+
+			                    '<td>'+privilege+'</td>'+
 			                    '<td>'+
 			                    '<a href="javascript:;" type="button" onclick="alertView('+data.id+')" class="btn btn-info">'+
 			                      'View'+
@@ -364,6 +393,7 @@
 					if(status)
 					{
 						var data = result.data;
+						var privilege = (data.privilege==1)?"System Admin":"Member";
 						var avatar = '<img src="'+data.avatar+'" height="150" width="150">';
 						var gender = (data.gender==1)?'Male':'Female';
 						$("#vid").html(data.id);
@@ -373,6 +403,7 @@
 						$("#vgender").html(gender);
 						$("#vbirthday").html(data.birthday);
 						$("#vaddress").html(data.address);
+						$("#vprivilege").html(privilege);
 					}
 				},
 				error: function (xhr, ajaxOptions, thrownError) {

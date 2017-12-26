@@ -21,7 +21,7 @@
 						<td><?php echo $row['id'] ?></td>
 						<td style="width: 30%"><?php echo substr($row['title'], 5) ?></td>
 						<td style="width: 30%"><?php echo $row['description'] ?></td>
-						<td ><?php echo ($row['status']==1)?"Ready":"Waiti" ?></td>
+						<td ><?php echo ($row['status']==1)?"Ready":"Waiting" ?></td>
 						<td style="width: 25%">
 							<a href="?mod=index&act=read&slug=<?php echo $row['slug']; ?>" class="btn btn-info">View</a>
 							<a href="javascript:;" type="button" onclick="alertEdit('<?php echo $row['id']; ?>')" class="btn btn-success">update</a>
@@ -122,10 +122,12 @@
   			var image=$("#image").val();
   			var description=$("#description").val();
   			var content=CKEDITOR.instances.content.getData();
+  			var status = '0';
   			$.ajax({
   				url: '?mod=posts&act=store',
   				type: 'post',
   				data:{
+  					status:status,
   					user_id:user_id,
   					title:title,
   					image:image,

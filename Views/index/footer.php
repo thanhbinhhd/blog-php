@@ -3,7 +3,7 @@
 	<div class="footer">
 		<div class="container">
 			<div class="footer-text">
-				<p>© 2015 Coffee Break. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+				<p>© 2015 Eva Blog | Design by  <a href="http://facebook.com/thanhbinhhd97" target="_blank">Thanh Bình</a> </p>
 			</div>
 		</div>
 	</div>

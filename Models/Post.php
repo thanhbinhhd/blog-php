@@ -75,7 +75,6 @@
 		{
 			$data=array();
 			$query ="SELECT posts.*,".$table.".* FROM posts,".$table.$condition;
-			die($query);
 			$result = $this->dbconn->query($query);
 			while ($row = $result->fetch_assoc()) {
 				$data[]=$row;

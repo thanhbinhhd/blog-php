@@ -51,17 +51,15 @@
 			$table='users';
 			$condition = " WHERE user_id='$id' and users.id=user_id";
 			$data = $this->model->list_of($table,$condition);
-			echo "<pre>";
-				print_r($data);
-			echo "</pre>";
-			die;
+			include_once  'Views/index/list_of.php';
 		}
 		public function list_of_tag()
 		{
 			$id=$_GET['id'];
 			$table='tags';
-			$condition = "WHERE id='$id'";
+			$condition = " WHERE tags.id='$id' and posts.id=post_id";
 			$data = $this->model->list_of($table,$condition);
+			require_once 'Views/index/list_of.php';
 		}
 
 

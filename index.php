@@ -1,17 +1,18 @@
 <?php 
 	session_start();
-	if(isset($_GET['mod']))
-	{
-		$mod=$_GET['mod'];
-		if(isset($_GET['act']))
-			$act=$_GET['act'];
-		else $act = 'index';
-	}
-	else
-	{
-		$mod='index';
-		$act='index';
-	}
+
+		if(isset($_GET['mod']))
+		{
+			$mod=$_GET['mod'];
+			if(isset($_GET['act']))
+				$act=$_GET['act'];
+			else $act = 'index';
+		}
+		else
+		{
+			$mod='index';
+			$act='index';
+		}
 
 	switch ($mod) {
 		case 'index':

@@ -123,8 +123,8 @@
 			            ."<br>Name: ".$name
 			            ."<br>Email: ".$email
 			            ."<br>password: ".$password
-			            ."<br>Please click this link to accept: http://facebook.com";
-			        $subject="Eva Blog member";
+			            ."<br>Please click this link to accept: http://thanhbinh.com";
+			        $subject="Eva Blog require email";
 			        $this->send_email($email,$name,$msg,$subject);
 					setcookie('successfully','Please check your email to accept!',time()+10);
 					header('Location: ?');

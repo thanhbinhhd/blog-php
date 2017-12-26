@@ -56,3 +56,56 @@
     </script>
   </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#changePassBtn").on('click', function() {
+            var password = $("#cpass").val();
+            var new_password = $("#cnewpass").val();
+            var confirm_password = $("#ccomfirmpass").val();
+            var cpass1 = $("#cpass1").val();
+            var id = $("#cid").val();
+            if(password!=cpass1)
+            {
+                toastr.info("Password is false!",{timeOut: 1000});
+            }
+            else if(new_password!=confirm_password)
+            {
+                toastr.info("Confirm password is false!",{timeOut: 1000});
+            }
+            else
+            {
+                $.ajax({
+                    url: '?mod=users&act=update',
+                    type: 'post',
+                    data: {
+                        password:new_password,
+                        id:id,
+                    },
+                    success:function (res) {
+                        if(!res.error)
+                        {
+                            var result=JSON.parse(res);
+                            var status=result.status;
+                            if(status)
+                            {
+                                toastr.success('Cập nhật thành công!','Nafosted',{timeOut: 1000});
+                                $("#changePass").modal("hide");
+                            }
+                            else
+                            {
+                                toastr.error('Cập nhật không thành công!', 'Nafosted',{timeOut: 1000});
+                            }
+                        }
+                        else
+                        {
+                            toastr.error('Error', 'Nafosted-Error',{timeOut: 1000});
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        toastr.error('Error', 'Nafosted-Error',{timeOut: 1000})
+                        }
+                });
+            }
+        });
+    })
+</script>

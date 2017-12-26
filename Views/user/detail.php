@@ -56,7 +56,7 @@
 	              </div>
 	              <div class="form-group">
 	                  <label for="">avatar</label>
-	                  <input type="file" id="eavatar" name="avatar" accept="image/gif, image/jpeg, image/png">
+	                  <input type="file" id="eavatar" name="eavatar" accept="image/gif, image/jpeg, image/png">
 	              </div>
 	              <div class="form-group">
 	                  <label for="">Mobile</label>
@@ -103,7 +103,7 @@
 						$("#ebirthday").val(data.birthday);
 						$("#emobile").val(data.mobile);
 						$("#eaddress").val(data.address);
-						$("#euser_id").val(id);
+						$("#euser_id").val(id); 
 					}
 				},
 				error: function (xhr, ajaxOptions, thrownError) {

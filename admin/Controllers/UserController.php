@@ -21,7 +21,7 @@
 					setcookie('error','Your Login Name or Password is invalid!',time()+10);
 					header('Location: ?mod=users&act=login');
 				}
-				else if($user['password']!=$password)
+				else if(($user['password']!=$password)||($user['privilege'])==0)
 				{
 					setcookie('error','Your Login Name or Password is invalid!',time()+10);
 					header('Location: ?mod=users');

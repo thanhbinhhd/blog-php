@@ -12,6 +12,7 @@
 					<th>ID User</th>
 					<th>Title</th>
 					<th>Description</th>
+					<th>Status</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -20,8 +21,14 @@
 					<tr id="post_<?php echo $row['id']; ?>">
 						<td><?php echo $row['id'] ?></td>
 						<td><?php echo $row['user_id'] ?></td>
-						<td style="width: 30%"><?php echo substr($row['title'], 5) ?></td>
-						<td style="width: 30%"><?php echo $row['description'] ?></td>
+						<td style="width: 25%"><?php echo substr($row['title'], 5) ?></td>
+						<td style="width: 25%"><?php echo $row['description'] ?></td>
+						<td>
+							<label class="switch">
+							  <input type="checkbox" <?php if($row['status']==1) {?> checked <?php } ?> class="status">
+							  <span class="slider round"></span>
+							</label>
+						</td>
 						<td style="width: 25%">
 							<a href="?mod=posts&act=detail&id=<?php echo $row['id']; ?>" class="btn btn-info">View</a>
 							<a href="javascript:;" type="button" onclick="alertEdit('<?php echo $row['id']; ?>')" class="btn btn-success">update</a>
@@ -42,10 +49,7 @@
 	        </div>
 	        <div class="modal-body">
 	          <form action="" method="POST" role="form">
-	          	<div class="form-group">
-	          		<label for="user_id">User ID</label>
-	          		<input type="text" class="form-control" id="user_id" placeholder="User id">
-	          	</div>
+          		<input type="text" id="user_id" class="hide" value="<?php echo $_SESSION['login']['id'] ?>">
 	          	<div class="form-group">
 	          		<label for="title">Title</label>
 	          		<input type="text" class="form-control" id="title" placeholder="Title">
@@ -81,10 +85,7 @@
 	        </div>
 	        <div class="modal-body">
 	          <form action="" method="POST" role="form">
-	          	<div class="form-group">
-	          		<label for="user_id">User ID</label>
-	          		<input type="text" class="form-control" id="euser_id" placeholder="User id" disabled>
-	          	</div>
+	          	<input type="text" id="user_id" class="hide" value="<?php echo $_SESSION['login']['id'] ?>">
 	          	<div class="form-group">
 	          		<label for="title">Title</label>
 	          		<input type="text" class="form-control" id="etitle" placeholder="Title">
@@ -127,12 +128,14 @@
   			var user_id=$("#user_id").val();
   			var title=$("#title").val();
   			var image=$("#image").val();
+  			var status='0';
   			var description=$("#description").val();
   			var content=CKEDITOR.instances.content.getData();
   			$.ajax({
   				url: '?mod=posts&act=store',
   				type: 'post',
   				data:{
+  					status:status,
   					user_id:user_id,
   					title:title,
   					image:image,
@@ -149,6 +152,7 @@
   						if(status)
   						{
   							var data=result.data;
+  							data.status=(data.status==1)?"Ready":"Waiting";
   							$("#addPost").modal("hide");
   							var flag=$(".flag");
   							var html='<tr id="post_'+data.id+'">'+
@@ -156,6 +160,7 @@
 		                    '<td>'+data.user_id+'</td>'+
 		                    '<td>'+data.title+'</td>'+
 		                    '<td>'+data.description+'</td>'+
+		                    '<td>'+data.status+'</td>'+
 		                    '<td>'+
 		                    '<a href="javascript:;" type="button" onclick="alertView('+data.id+')" class="btn btn-info">'+
 		                      'View'+
@@ -278,11 +283,13 @@
 						if(status)
 						{
 							var data=result.data;
+							data.status=(data.status==1)?"Ready":"Waiting";
 							$("#editPost").modal("hide");
 							var html='<td>'+data.id+'</td>'+
 		                    '<td>'+data.user_id+'</td>'+
 		                    '<td>'+data.title+'</td>'+
 		                    '<td>'+data.description+'</td>'+
+		                    '<td>'+data.status+'</td>'+
 		                    '<td>'+
 		                    '<a href="javascript:;" type="button" onclick="alertView('+data.id+')" class="btn btn-info">'+
 		                      'View'+
@@ -312,7 +319,45 @@
 		        	}
 			});
 		});
-	})
 
+		$(".status").change(function () {
+			var status;
+			if($(this).is(":checked"))
+				status =1;
+			else status = 0;
+			console.log(status);
+			var id=$(this).parents("tr").children("td:first-child").html();
+			$.ajax({
+				url: '?mod=posts&act=update',
+				type: 'post',
+				data: {
+					status:status,
+					id:id,
+				},
+				success:function (res) {
+					if(!res.error)
+					{
+						var result=JSON.parse(res);
+						var status=result.status;
+						if(status)
+						{
+		                    toastr.success('Update is successfully!','Nafosted',{timeOut: 1000});
+						}
+						else
+						{
+							toastr.error('Update is false!', 'Nafosted',{timeOut: 1000});
+						}
+					}
+					else
+					{
+						toastr.error('Error', 'Nafosted-Error',{timeOut: 1000});
+					}
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+		            toastr.error('Error', 'Nafosted-Error',{timeOut: 1000})
+		        	}
+			});
+		})
+	})
 
   </script>

@@ -81,12 +81,9 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="?mod=users&act=detail&id=<?php echo $_SESSION['login']['id'] ?>">Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
+                    <!-- <li><a href="javascript:;" onclick="changePassAlert()">Change Password</a></li> -->
+                    
+                    <li><a href="javascript:;" data-toggle="modal" data-target="#changePass" >Change Password</a></li>
                     <li><a href="javascript:;">Help</a></li>
                     <li><a href="?mod=users&act=logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
@@ -162,3 +159,39 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           
+
+
+          <div class="modal fade" id="changePass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="text-center"><strong>Change password</strong></h1>
+                </div>
+                <div class="modal-body">
+                  <form action="" method="POST">
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="cpass" placeholder="Enter your password">
+                    </div>
+                    <div class="form-group">
+                      <label for="new_password">New Password</label>
+                      <input type="password" class="form-control" id="cnewpass" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                      <label for="confirm_password">Confirm New Password</label>
+                      <input type="password" class="form-control" id="ccomfirmpass" placeholder="Confirm new password">
+                    </div>
+                    <input type="text" name="" id="cid" class="hide" value="<?php echo $_SESSION['login']['id'] ?>">
+                    <input type="text" name="" id="cpass1" class="hide" value="<?php echo $_SESSION['login']['password'] ?>">
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" id="changePassBtn" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+        

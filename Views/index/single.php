@@ -19,7 +19,7 @@
 					<div class=" single-grid">
 						<h2><?php echo $post['title'] ?></h2>				
 							<ul class="blog-ic">
-								<li><a href="?mod=posts&act=list_of_author&id=<?php echo $author['id'] ?>"><span> <i  class="glyphicon glyphicon-user"> </i><?php echo $author['name'] ?></span> </a> </li>
+								<li><a href="?mod=index&act=list_of_author&id=<?php echo $author['id'] ?>"><span> <i  class="glyphicon glyphicon-user"> </i><?php echo $author['name'] ?></span> </a> </li>
 		  						 <li><span><i class="glyphicon glyphicon-time"> </i><?php echo $post['created_at'] ?></span></li>		  						 	
 		  						 <li><span><i class="glyphicon glyphicon-eye-open"> </i>Hits:145</span></li>
 		  					</ul>		  						
@@ -29,12 +29,22 @@
 						<p><?php echo $post['content']; ?></p>
 						<div style="opacity: 0.8">Tags: 
 							<?php foreach ($tags as $row) {?>
-								<a href="?mod=posts&act=list_of_tag&id=<?php echo $row['id'] ?>" class="btn"><?php echo $row['name'] ?></a>
+								<a href="?mod=index&act=list_of_tag&id=<?php echo $row['id'] ?>" class="btn"><?php echo $row['name'] ?></a>
 							<?php } ?>
 						</div>
 					</div>
+					<?php if(isset($_SESSION['login'])){ ?>
 					<div class="comments heading">
-						<h3>Comments</h3>
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11';
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+						<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+						<!-- <h3>Comments</h3>
 						<div class="media">
 					      	<div class="media-body">
 						        <h4 class="media-heading">	Richard Spark</h4>
@@ -65,8 +75,11 @@
 						<input type="text" value="Subject" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Subject';}">
 						<textarea cols="77" rows="6" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
 							<input type="submit" value="Send">
-					</form>
+					</form> -->
     				</div>
+    				<?php } else{ ?>
+    					<center style="margin-top: 50px;"><a href="?mod=users&act=login&slug=<?php echo $post['slug'] ?>">Please login to comment</a></center>
+    				<?php } ?>
 				</div>	
 			</div>					
 	</div>
